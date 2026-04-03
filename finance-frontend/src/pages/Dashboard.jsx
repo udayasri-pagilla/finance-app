@@ -6,9 +6,7 @@ function Dashboard({ user }) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  //  Analyst filters
   const [search, setSearch] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
 
   useEffect(() => {
     const fetchSummary = async () => {
@@ -37,7 +35,7 @@ function Dashboard({ user }) {
     return <p style={{ textAlign: "center", marginTop: "50px" }}>Loading...</p>;
   }
 
-  //  FILTER LOGIC (only for analyst)
+  // 🔍 Analyst filter
   let filteredCategories = Object.entries(data.categoryBreakdown);
 
   if (user.role === "analyst") {
@@ -55,7 +53,7 @@ function Dashboard({ user }) {
         <p><strong>Total Expense:</strong> ₹{data.totalExpense}</p>
         <p><strong>Net Balance:</strong> ₹{data.netBalance}</p>
 
-        {/*  ANALYST FEATURES */}
+        {/* 🔍 ANALYST TOOLS */}
         {user.role === "analyst" && (
           <>
             <hr />
@@ -70,14 +68,12 @@ function Dashboard({ user }) {
             <p style={{ fontSize: "13px", color: "gray" }}>
               Filter categories by name
             </p>
-            <p style={{ fontSize: "13px", color: "gray" }}>
-  As an analyst, you can explore and filter financial insights.
-</p>
           </>
         )}
 
         <hr />
 
+        {/* CATEGORY */}
         <h3>Category Breakdown</h3>
 
         {filteredCategories.length === 0 ? (
@@ -88,7 +84,30 @@ function Dashboard({ user }) {
           ))
         )}
 
-        {/*  EXTRA FOR ANALYST */}
+        {/* 🔥 RECENT ACTIVITY */}
+        <hr />
+        <h3>Recent Activity</h3>
+        {data.recentActivity.map((r) => (
+          <p key={r._id}>
+            {r.type === "income" ? "🟢" : "🔴"} ₹{r.amount} — {r.category}
+          </p>
+        ))}
+
+        {/* 🔥 MONTHLY */}
+        <hr />
+        <h3>Monthly Trends</h3>
+        {Object.entries(data.monthlyTrends).map(([k, v]) => (
+          <p key={k}>{k}: ₹{v}</p>
+        ))}
+
+        {/* 🔥 WEEKLY */}
+        <hr />
+        <h3>Weekly Trends</h3>
+        {Object.entries(data.weeklyTrends).map(([k, v]) => (
+          <p key={k}>{k}: ₹{v}</p>
+        ))}
+
+        {/* 🔥 ANALYST EXTRA */}
         {user.role === "analyst" && (
           <>
             <hr />

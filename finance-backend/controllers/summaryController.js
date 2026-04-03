@@ -34,7 +34,7 @@ exports.getSummary = async (req, res) => {
     });
 
   } catch (error) {
-    console.error("SUMMARY ERROR:", error); // 🔥 ADD THIS
+    console.error("SUMMARY ERROR:", error); // ADD THIS
     res.status(500).json({ message: "Error fetching summary" });
   }
 };

@@ -13,7 +13,7 @@ const login = async () => {
 
     setUser(res.data.user);
 
-    setPage("dashboard"); // 🔥 THIS FIXES BLANK SCREEN
+    setPage("dashboard"); //  THIS FIXES BLANK SCREEN
 
   } catch {
     alert("Invalid credentials");

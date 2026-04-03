@@ -5,14 +5,14 @@ exports.createUser = async (req, res) => {
   try {
     const { name, email, password, role, status } = req.body;
 
-    // ✅ VALIDATION (must be BEFORE using variables)
+    //  VALIDATION (must be BEFORE using variables)
     if (!name || !email || !password) {
       return res.status(400).json({
         message: "Name, email, and password are required",
       });
     }
 
-    // ✅ OPTIONAL: restrict role assignment
+    //  OPTIONAL: restrict role assignment
     // if no JWT yet → allow default role
     let newRole = role || "viewer";
 
@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
     const user = new User({
       name,
       email,
-      password, // 🔥 will be hashed automatically (pre-save hook)
+      password, //  will be hashed automatically (pre-save hook)
       role: newRole,
       status,
     });
@@ -40,7 +40,7 @@ exports.createUser = async (req, res) => {
 
   } catch (error) {
 
-    // 🔥 Duplicate email handling
+    //  Duplicate email handling
     if (error.code === 11000) {
       return res.status(400).json({
         message: "Email already exists",

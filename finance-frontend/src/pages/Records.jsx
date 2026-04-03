@@ -29,7 +29,7 @@ function Records({ user }) {
     );
   }
 
-  // 🔥 FETCH WITH FILTER
+  //  FETCH WITH FILTER
   const fetchRecords = () => {
     let query = "";
 
@@ -43,7 +43,7 @@ function Records({ user }) {
     fetchRecords();
   }, [search, typeFilter]);
 
-  // ➕ ADD
+  // ADD
   const add = async () => {
     try {
       await api.post("/records", form);
@@ -54,7 +54,7 @@ function Records({ user }) {
     }
   };
 
-  // ✏️ UPDATE
+  //  UPDATE
   const updateRecord = async (id) => {
     try {
       await api.put(`/records/${id}`, form);
@@ -65,7 +65,7 @@ function Records({ user }) {
     }
   };
 
-  // 🗑 DELETE
+  // DELETE
   const deleteRecord = async (id) => {
     if (!window.confirm("Delete this record?")) return;
 
@@ -82,7 +82,7 @@ function Records({ user }) {
       <div className="card">
         <h2>Records</h2>
 
-        {/* 🔍 FILTER UI */}
+        {/*  FILTER UI */}
         <div style={{ marginBottom: "15px" }}>
           <h3>Filter Records</h3>
 
@@ -102,7 +102,7 @@ function Records({ user }) {
           </select>
         </div>
 
-        {/* 🔥 ADMIN ADD FORM */}
+        {/*  ADMIN ADD FORM */}
         {user.role === "admin" ? (
           <>
             <h3>Add Record</h3>
@@ -158,7 +158,7 @@ function Records({ user }) {
         ) : (
           records.map((r) => (
             <div key={r._id} className="record-item">
-              {/* ✏️ EDIT MODE */}
+              {/*  EDIT MODE */}
               {editingId === r._id ? (
                 <>
                   <input
@@ -192,7 +192,7 @@ function Records({ user }) {
                 <>
                   {r.type === "income" ? "🟢" : "🔴"} ₹{r.amount} — {r.category}
 
-                  {/* 🔥 ADMIN ACTIONS */}
+                  {/*  ADMIN ACTIONS */}
                   {user.role === "admin" && (
                     <div style={{ marginTop: "5px" }}>
                       <button

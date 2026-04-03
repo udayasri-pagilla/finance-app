@@ -10,17 +10,17 @@ import "./styles.css";
 function App() {
   const [user, setUser] = useState(null);
 
-  // ✅ DEFAULT TO DASHBOARD AFTER LOGIN
+  //  DEFAULT TO DASHBOARD AFTER LOGIN
   const [page, setPage] = useState("login");
 
-  // 🔐 NOT LOGGED IN
+  //  NOT LOGGED IN
   if (!user) {
     return (
       <>
         {page === "login" && (
           <Login
             setUser={setUser}
-            setPage={setPage}   // 🔥 PASS THIS
+            setPage={setPage}   
             goRegister={() => setPage("register")}
           />
         )}
@@ -32,7 +32,7 @@ function App() {
     );
   }
 
-  // ✅ LOGGED IN UI
+  // LOGGED IN UI
   return (
     <>
       <Navbar setPage={setPage} setUser={setUser} />

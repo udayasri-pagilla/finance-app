@@ -208,6 +208,26 @@ This project demonstrates:
 
 ---
 
+
+## 🌐 Live Demo
+
+* 🔗 Frontend (Vercel): https://finance-app-seven-dun.vercel.app/
+* 🚀 Backend API (Render): https://finance-app-t8vg.onrender.com
+---
+
+## 🧪 Test Credentials (Optional)
+
+You can use the following credentials to test:
+
+* **Admin**
+
+  * Email: [shiva@test.com](mailto:shiva@test.com)
+  * Password: 123456
+
+* **Viewer / Analyst**
+
+  * Create via registration or use existing users
+
 ## 👩‍💻 Author
 
 **Udayasri Pagilla**

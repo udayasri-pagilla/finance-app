@@ -1,4 +1,6 @@
 
+
+
 const jwt = require("jsonwebtoken");
 
 module.exports = (allowedRoles) => {
@@ -16,15 +18,25 @@ module.exports = (allowedRoles) => {
 
       req.user = decoded;
 
+      // ✅ FIXED: use decoded instead of user
+      if (decoded.status === "inactive") {
+        return res.status(403).json({
+          message: "User account is inactive",
+        });
+      }
+
+      // ✅ role check
       if (!allowedRoles.includes(decoded.role)) {
         return res.status(403).json({ message: "Access denied" });
       }
+
       console.log("USER ROLE:", decoded.role);
-console.log("ALLOWED:", allowedRoles);
+      console.log("ALLOWED:", allowedRoles);
 
       next();
 
     } catch (error) {
+      console.error("JWT ERROR:", error.message);
       return res.status(401).json({ message: "Invalid token" });
     }
   };
